@@ -6,13 +6,14 @@
 /*   By: nahmed-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 11:52:32 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/02/20 12:02:58 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/02/23 13:37:18 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
 
 extern t_memory g_memory;
+
 
 static size_t	show_tiny_heap(void)
 {
@@ -23,16 +24,16 @@ static size_t	show_tiny_heap(void)
 	tmp = g_memory.heap_tiny;
 	if (tmp)
 	{
-		ft_printf("TINY :\n");
+		ft_printf("TINY :  0x%X\n", tmp);
 		while (tmp)
 		{
-			if (tmp->free == 0)
-			{
-				ft_printf("\tSIZE : %d, 0x%X\n", tmp->size, tmp->data);
-//				if (tmp->next != NULL)
-//					ft_printf("\t\t\t\tDECAL : %d\n", tmp->next->data - tmp->data);
+		ft_printf("\t0x%X - 0x%X : %d octets", tmp->data, tmp->data + tmp->size, tmp->size);
+			if ((tmp->free & FLAG_PAGE) != 0)
+		ft_printf("   HEAD OF PAGE");
+			if ((tmp->free & FLAG_FREE) != 0)
+		ft_printf("   FREE");
+				ft_printf("\n");
 				size += tmp->size;
-			}
 			tmp = tmp->next;
 		}
 	ft_printf("\n");
@@ -49,14 +50,17 @@ static size_t	show_small_heap(void)
 	tmp = g_memory.heap_small;
 	if (tmp)
 	{
-		ft_printf("SMALL :\n");
+		ft_printf("SMALL : 0x%X\n", tmp);
 		while (tmp)
 		{
-			if (tmp->free == 0)
-			{
-				ft_printf("\tSIZE : %d, 0x%X\n", tmp->size, tmp->data);
+				ft_printf("\t0x%X - 0x%X : %d octets", tmp->data, tmp->data + tmp->size, tmp->size);
+		if ((tmp->free & FLAG_PAGE) != 0)
+		ft_printf("   HEAD OF PAGE");
+			if ((tmp->free & FLAG_FREE) != 0)
+		ft_printf("   FREE");
+//			ft_printf("%s", tmp->data);
+				ft_printf("\n");
 				size += tmp->size;
-			}
 			tmp = tmp->next;
 		}
 	ft_printf("\n");
@@ -73,14 +77,15 @@ static size_t	show_big_heap(void)
 	tmp = g_memory.heap_big;
 	if (tmp)
 	{
-		ft_printf("BIG :\n");
+		ft_printf("BIG :   0x%X\n", tmp);
 		while (tmp)
 		{
-			if (tmp->free == 0)
-			{
-				ft_printf("\tSIZE : %d, 0x%X\n", tmp->size, tmp->data);
+				ft_printf("\t0x%X - 0x%X : %d octets", tmp->data, tmp->data + tmp->size, tmp->size);
+			if ((tmp->free & FLAG_PAGE) != 0)
+		ft_printf("   HEAD OF PAGE %d ", tmp->size);
+			ft_printf("%s", tmp->data);
+				ft_printf("\n");
 				size += tmp->size;
-			}
 			tmp = tmp->next;
 		}
 	ft_printf("\n");

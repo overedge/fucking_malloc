@@ -6,7 +6,7 @@
 /*   By: nahmed-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 16:59:56 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/02/20 12:07:25 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/02/23 09:35:23 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 typedef struct		s_heap {
 	size_t			size;
-	int				free;
+	unsigned char	free;
 	struct s_heap	*next;
 	char			data[];
 }					t_heap;
@@ -41,16 +41,19 @@ typedef struct		s_memory {
 # define TINY 1
 
 # define TINY_SIZE 128
-# define SMALL_SIZE 512
+# define SMALL_SIZE 4096
 
 # define BLOCK_SIZE sizeof(t_heap)
-# define ALIGN8(x) (((((x) -1) >>3) <<3)+8)
+
+# define FLAG_FREE 1
+# define FLAG_PAGE 2
+
 /*
 ** Function of project
 */
 void				free(void *ptr);
 void				*malloc(size_t size);
-void				*realloc(void *ptr, size_t size);
+/*void				*realloc(void *ptr, size_t size);*/
 void				show_alloc_mem(void);
 /*
 ** Function and declation of memory management
@@ -60,7 +63,6 @@ int					get_block_size(size_t size, int size_category);
 t_heap				*get_list_category(int size_category);
 t_heap				*get_last_of_list(t_heap *begin);
 t_heap				*verify_heap(size_t size, int size_category);
-t_heap				*verify_heap_big(size_t size, int size_category);
 t_heap				*extend_heap(size_t size, int size_category);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nahmed-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 17:38:51 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/02/20 12:07:22 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/02/21 15:14:35 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,9 @@ extern t_memory g_memory;
 
 int		get_block_category(size_t size)
 {
-	int		size_page;
-
-	size_page = getpagesize();
-	if (size + BLOCK_SIZE >= size_page)
+	if (size + BLOCK_SIZE >= SMALL_SIZE)
 		return (BIG);
-	if (size + BLOCK_SIZE > 128 && size + BLOCK_SIZE < 512)
+	if (size + BLOCK_SIZE > 128 && size + BLOCK_SIZE < 4096)
 		return (SMALL);
 	return (TINY);
 }
@@ -29,11 +26,11 @@ int		get_block_category(size_t size)
 int		get_block_size(size_t size, int size_category)
 {
 	if (size_category == BIG)
-		return (-1);
+		return (((size + BLOCK_SIZE) / getpagesize() + 1) * getpagesize());
 	else if (size_category == SMALL)
-		return (SMALL_SIZE * 100 / getpagesize());
+		return (((SMALL_SIZE + BLOCK_SIZE) * 100 / getpagesize() + 1) * getpagesize()); 
 	else
-		return (TINY_SIZE * 100 / getpagesize());
+		return (((TINY_SIZE + BLOCK_SIZE) * 100 / getpagesize() + 1) * getpagesize());
 }
 
 t_heap	*get_list_category(int size_category)

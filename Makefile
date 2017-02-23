@@ -14,14 +14,18 @@ $(NAME) :
 	@make fclean -C libft/ && make -C libft/
 	@cp libft/libft.a .
 	@gcc -c -Wall -Werror -Wextra $(SRC_NAME)
+	@rm -rf libft_malloc.so
 	@gcc $(OBJ_NAME) -shared -o $(NAME) -L. -lft
+	@ln -s $(NAME) libft_malloc.so
 	@echo "\033[1;34m --MALLOC-- :\033[m \033[1;32m DONE !\033[m"
 
 debug :
 	@make fclean -C libft/ && make -C libft/ 
 	@cp libft/libft.a .
-	@gcc -c $(SRC_NAME)
+	@rm -rf libft_malloc.so
+	@gcc -g -c $(SRC_NAME)
 	@gcc -shared -o $(NAME) $(OBJ_NAME) -L. -lft
+	@ln -s $(NAME) libft_malloc.so
 	@echo "\033[1;31m --DEBUG--MODE-- :\033[m \033[1;32m DONE !\033[m"
 
 clean :
