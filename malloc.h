@@ -6,7 +6,7 @@
 /*   By: nahmed-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 16:59:56 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/02/23 09:35:23 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/02/26 02:43:00 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define FLAG1 PROT_READ | PROT_WRITE
 # define FLAG2 MAP_ANON | MAP_PRIVATE
 # define BONUS_SHOW_SIZE 1
-
+static int z;
 typedef struct		s_heap {
 	size_t			size;
 	unsigned char	free;

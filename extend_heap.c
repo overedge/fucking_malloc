@@ -6,7 +6,7 @@
 /*   By: nahmed-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 14:42:42 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/02/23 14:36:34 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/02/26 20:50:05 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 extern t_memory g_memory;
 t_heap	*extend_heap(size_t size, int size_category)
 {
-	printf("EXTEND HEAP\n");
 	t_heap		*tmp;
 	t_heap		*new;
 
@@ -24,7 +23,7 @@ t_heap	*extend_heap(size_t size, int size_category)
 	if ((new = mmap(0, get_block_size(size, size_category), FLAG1, FLAG2, -1, 0)) == MAP_FAILED)
 		return (NULL);
 	new->size = size;
-	new->free = 2;
+	new->free = FLAG_PAGE;
 	new->next = NULL;
 	if (!tmp)
 	{
@@ -40,5 +39,6 @@ t_heap	*extend_heap(size_t size, int size_category)
 		tmp = get_last_of_list(tmp);
 		tmp->next = new;
 	}
+	ft_printf("EXTEND HEAP\n");;
 	return (new);
 }

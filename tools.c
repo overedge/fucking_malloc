@@ -6,7 +6,7 @@
 /*   By: nahmed-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 17:38:51 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/02/21 15:14:35 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/02/26 15:01:54 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		get_block_size(size_t size, int size_category)
 	if (size_category == BIG)
 		return (((size + BLOCK_SIZE) / getpagesize() + 1) * getpagesize());
 	else if (size_category == SMALL)
-		return (((SMALL_SIZE + BLOCK_SIZE) * 100 / getpagesize() + 1) * getpagesize()); 
+		return (((SMALL_SIZE + BLOCK_SIZE) * 100 / getpagesize() + 1) * getpagesize());
 	else
 		return (((TINY_SIZE + BLOCK_SIZE) * 100 / getpagesize() + 1) * getpagesize());
 }
