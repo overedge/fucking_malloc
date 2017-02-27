@@ -6,7 +6,7 @@
 /*   By: nahmed-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 17:38:51 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/02/26 15:01:54 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/02/27 00:34:17 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ extern t_memory g_memory;
 
 int		get_block_category(size_t size)
 {
-	if (size + BLOCK_SIZE >= SMALL_SIZE)
+	if (size + BLOCK_SIZE > SMALL_SIZE)
 		return (BIG);
-	if (size + BLOCK_SIZE > 128 && size + BLOCK_SIZE < 4096)
+	if (size + BLOCK_SIZE > 128 && size + BLOCK_SIZE <= 4096)
 		return (SMALL);
 	return (TINY);
 }

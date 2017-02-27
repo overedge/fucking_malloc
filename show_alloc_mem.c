@@ -6,7 +6,7 @@
 /*   By: nahmed-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 11:52:32 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/02/26 03:09:22 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/02/27 01:02:26 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,16 @@ static size_t	show_tiny_heap(void)
 static size_t	show_small_heap(void)
 {
 	t_heap		*tmp;
+	t_heap		*new;
 	size_t		size;
-
+	
+	new = (t_heap*)(tmp + 413696);
 	size = 0;
 	tmp = g_memory.heap_small;
 	if (tmp)
 	{
-		ft_printf("SMALL : 0x%X\n", tmp);
+		printf("SMALL : 0x%X\n", tmp);
+		printf("SMALL : 0x%X\n", new);
 		while (tmp)
 		{
 				ft_printf("\t0x%X - 0x%X : %d octets", tmp->data, tmp->data + tmp->size, tmp->size);

@@ -3,12 +3,15 @@ int main()
 	int		i;
 	char	*addr;
 	i=0;
-	while(i<6)
+	while(i<1024)
 	{
-	addr = (char*)malloc(1024);
+//	if (i == 394)
+//		addr = (char*)malloc(120);
+//	else
+	addr = (char*)malloc(4072);
 	int		y = 0;
 	//			printf("SEGV\n");
-	while (y < 1023)
+	while (y < 4071)
 	{
 //	ft_printf("ICI %D," , y);
 	addr[y] = 42;

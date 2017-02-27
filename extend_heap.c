@@ -6,7 +6,7 @@
 /*   By: nahmed-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 14:42:42 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/02/26 20:50:05 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/02/27 01:02:25 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_heap	*extend_heap(size_t size, int size_category)
 	tmp = get_list_category(size_category);
 	if ((new = mmap(0, get_block_size(size, size_category), FLAG1, FLAG2, -1, 0)) == MAP_FAILED)
 		return (NULL);
+	ft_printf("mmap = 0x%X\n", new);
 	new->size = size;
 	new->free = FLAG_PAGE;
 	new->next = NULL;
@@ -38,6 +39,7 @@ t_heap	*extend_heap(size_t size, int size_category)
 	{
 		tmp = get_last_of_list(tmp);
 		tmp->next = new;
+		ft_printf("tmp = 0x%X tmp->data = 0x%X new = 0x%X new->data = 0x%X\n", tmp->next, tmp->next->data, new, new->data);
 	}
 	ft_printf("EXTEND HEAP\n");;
 	return (new);
