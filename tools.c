@@ -6,31 +6,41 @@
 /*   By: nahmed-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 17:38:51 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/02/27 00:34:17 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/03/01 02:04:22 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
 
-extern t_memory g_memory;
-
 int		get_block_category(size_t size)
 {
 	if (size + BLOCK_SIZE > SMALL_SIZE)
 		return (BIG);
-	if (size + BLOCK_SIZE > 128 && size + BLOCK_SIZE <= 4096)
+	else if (size + BLOCK_SIZE > TINY_SIZE && size + BLOCK_SIZE <= SMALL_SIZE)
 		return (SMALL);
-	return (TINY);
+	else
+		return (TINY);
 }
 
-int		get_block_size(size_t size, int size_category)
+size_t	get_block_size(int size_category)
+{
+	if (size_category == SMALL)
+		return (1024);
+	else if (size_category == TINY)
+		return (128);
+	else
+		printf("EROOOOOOOOOOOOOOR\n");
+		return (1);
+}
+
+size_t	get_zone_size(size_t size, int size_category)
 {
 	if (size_category == BIG)
-		return (((size + BLOCK_SIZE) / getpagesize() + 1) * getpagesize());
+		return (size + BLOCK_SIZE);
 	else if (size_category == SMALL)
-		return (((SMALL_SIZE + BLOCK_SIZE) * 100 / getpagesize() + 1) * getpagesize());
+		return (getpagesize() * 26);
 	else
-		return (((TINY_SIZE + BLOCK_SIZE) * 100 / getpagesize() + 1) * getpagesize());
+		return (getpagesize() * 4);
 }
 
 t_heap	*get_list_category(int size_category)

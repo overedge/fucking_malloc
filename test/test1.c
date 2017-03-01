@@ -1,28 +1,36 @@
+
+void	ft_remplis(int i, char *addr)
+{
+	int		y = 0;
+		while (y < i)
+		{
+			addr[y] = 42;
+			y++;
+		}
+		addr[y] = '\0';
+}
+
 int main()
 {
 	int		i;
 	char	*addr;
 	i=0;
-	while(i<1024)
+	while(i<50)
 	{
-//	if (i == 394)
-//		addr = (char*)malloc(120);
-//	else
-	addr = (char*)malloc(4072);
-	int		y = 0;
-	//			printf("SEGV\n");
-	while (y < 4071)
-	{
-//	ft_printf("ICI %D," , y);
-	addr[y] = 42;
-	y++;
-	}
-	addr[y] = '\0';
-	y = 0;
+	addr = (char*)malloc(1000);
+	ft_remplis(999, addr);
+	//free(addr);
+	addr = (char*)malloc(10);
+	//ft_remplis(9, addr);
+	free(addr);
+	addr = (char*)malloc(100);
+//	ft_remplis(99, addr);
+	free(addr);
+	addr = (char*)malloc(545);
+//	ft_remplis(544, addr);
+	free(addr);
 	i++;
-///	ft_printf("%s", addr);
 	}
 	show_alloc_mem();
-	//printf("SEGVS\n");
 	return(0);
 }

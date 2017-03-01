@@ -6,7 +6,7 @@
 /*   By: nahmed-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 11:52:32 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/02/27 01:02:26 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/03/01 01:26:30 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ static size_t	show_tiny_heap(void)
 	tmp = g_memory.heap_tiny;
 	if (tmp)
 	{
-		ft_printf("TINY :  0x%X\n", tmp);
+		printf("TINY :  0x%X\n", tmp);
 		while (tmp)
 		{
-		ft_printf("\t0x%X - 0x%X : %d octets", tmp->data, tmp->data + tmp->size, tmp->size);
+		printf("\t0x%X - 0x%X : %d octets", tmp->data, tmp->data + tmp->size, tmp->size);
 			if ((tmp->free & FLAG_PAGE) != 0)
-		ft_printf("   HEAD OF PAGE");
+		printf("   HEAD OF PAGE");
 			if ((tmp->free & FLAG_FREE) != 0)
-		ft_printf("   FREE");
-				ft_printf("\n");
+		printf("   FREE");
+				printf("\n");
 				size += tmp->size;
 			tmp = tmp->next;
 		}
@@ -44,16 +44,13 @@ static size_t	show_tiny_heap(void)
 static size_t	show_small_heap(void)
 {
 	t_heap		*tmp;
-	t_heap		*new;
 	size_t		size;
-	
-	new = (t_heap*)(tmp + 413696);
+
 	size = 0;
 	tmp = g_memory.heap_small;
 	if (tmp)
 	{
 		printf("SMALL : 0x%X\n", tmp);
-		printf("SMALL : 0x%X\n", new);
 		while (tmp)
 		{
 				ft_printf("\t0x%X - 0x%X : %d octets", tmp->data, tmp->data + tmp->size, tmp->size);
@@ -86,7 +83,8 @@ static size_t	show_big_heap(void)
 				ft_printf("\t0x%X - 0x%X : %d octets", tmp->data, tmp->data + tmp->size, tmp->size);
 			if ((tmp->free & FLAG_PAGE) != 0)
 		ft_printf("   HEAD OF PAGE %d ", tmp->size);
-			ft_printf("%s", tmp->data);
+			if ((tmp->free & FLAG_FREE) != 0)
+		ft_printf("   FREE");
 				ft_printf("\n");
 				size += tmp->size;
 			tmp = tmp->next;
