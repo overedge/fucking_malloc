@@ -6,7 +6,7 @@
 /*   By: nahmed-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 16:46:01 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/03/01 01:28:29 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/03/02 21:52:00 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,23 @@ void			*malloc(size_t size)
 {
 	t_heap		*tmp;
 	int			size_category;
+
+	pthread_mutex_lock(&g_mutex.mutex_malloc);
 	if (size == 0)
+	{
+		pthread_mutex_unlock(&g_mutex.mutex_malloc);
 		return (NULL);
+	}
 	size_category = get_block_category(size);
 	if ((tmp = verify_heap(size, size_category)) == NULL)
 	{
 		if ((tmp = extend_heap(size, size_category)) == NULL)
+		{
+				pthread_mutex_unlock(&g_mutex.mutex_malloc);
 				return (NULL);
+		}
 	}
+//	show_alloc_mem();
+	pthread_mutex_unlock(&g_mutex.mutex_malloc);
 	return (tmp->data);
 }
-

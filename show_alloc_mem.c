@@ -6,14 +6,11 @@
 /*   By: nahmed-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 11:52:32 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/03/01 01:26:30 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/03/02 03:02:34 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
-
-extern t_memory g_memory;
-
 
 static size_t	show_tiny_heap(void)
 {
@@ -24,19 +21,20 @@ static size_t	show_tiny_heap(void)
 	tmp = g_memory.heap_tiny;
 	if (tmp)
 	{
-		printf("TINY :  0x%X\n", tmp);
+		ft_printf("TINY :  0x%X\n", tmp);
 		while (tmp)
 		{
-		printf("\t0x%X - 0x%X : %d octets", tmp->data, tmp->data + tmp->size, tmp->size);
+			ft_printf("\t0x%X - 0x%X : %d octets", tmp->data, tmp->data + tmp->size, tmp->size);
 			if ((tmp->free & FLAG_PAGE) != 0)
-		printf("   HEAD OF PAGE");
+				if (getenv("MALLOC_SHOW_MMAP") && !ft_strcmp(getenv("MALLOC_SHOW_MMAP"), "1") && (tmp->free & FLAG_PAGE) != 0)
+					ft_printf("   HEAD OF PAGE");
 			if ((tmp->free & FLAG_FREE) != 0)
-		printf("   FREE");
-				printf("\n");
-				size += tmp->size;
+				ft_printf("   FREE");
+			ft_printf("\n");
+			size += tmp->size;
 			tmp = tmp->next;
 		}
-	ft_printf("\n");
+		ft_printf("\n");
 	}
 	return (size);
 }
@@ -50,20 +48,19 @@ static size_t	show_small_heap(void)
 	tmp = g_memory.heap_small;
 	if (tmp)
 	{
-		printf("SMALL : 0x%X\n", tmp);
+		ft_printf("SMALL : 0x%X\n", tmp);
 		while (tmp)
 		{
-				ft_printf("\t0x%X - 0x%X : %d octets", tmp->data, tmp->data + tmp->size, tmp->size);
-		if ((tmp->free & FLAG_PAGE) != 0)
-		ft_printf("   HEAD OF PAGE");
+			ft_printf("\t0x%X - 0x%X : %d octets", tmp->data, tmp->data + tmp->size, tmp->size);
+			if ((tmp->free & FLAG_PAGE) != 0)
+				ft_printf("   HEAD OF PAGE");
 			if ((tmp->free & FLAG_FREE) != 0)
-		ft_printf("   FREE");
-//			ft_printf("%s", tmp->data);
-				ft_printf("\n");
-				size += tmp->size;
+				ft_printf("   FREE");
+			ft_printf("\n");
+			size += tmp->size;
 			tmp = tmp->next;
 		}
-	ft_printf("\n");
+		ft_printf("\n");
 	}
 	return (size);
 }
@@ -80,16 +77,16 @@ static size_t	show_big_heap(void)
 		ft_printf("BIG :   0x%X\n", tmp);
 		while (tmp)
 		{
-				ft_printf("\t0x%X - 0x%X : %d octets", tmp->data, tmp->data + tmp->size, tmp->size);
+			ft_printf("\t0x%X - 0x%X : %d octets", tmp->data, tmp->data + tmp->size, tmp->size);
 			if ((tmp->free & FLAG_PAGE) != 0)
-		ft_printf("   HEAD OF PAGE %d ", tmp->size);
+				ft_printf("   HEAD OF PAGE %d ", tmp->size);
 			if ((tmp->free & FLAG_FREE) != 0)
-		ft_printf("   FREE");
-				ft_printf("\n");
-				size += tmp->size;
+				ft_printf("   FREE");
+			ft_printf("\n");
+			size += tmp->size;
 			tmp = tmp->next;
 		}
-	ft_printf("\n");
+		ft_printf("\n");
 	}
 	return (size);
 }
@@ -98,12 +95,13 @@ void			show_alloc_mem()
 {
 	size_t		size;
 
+	pthread_mutex_lock(&g_mutex.mutex_show);
 	size = 0;
 	size += show_tiny_heap();
 	size += show_small_heap();
 	size += show_big_heap();
 	ft_printf("Size: %d octect(s)\n", size);
-	if (BONUS_SHOW_SIZE)
+	if (getenv("MALLOC_HUMAN_READ") && !ft_strcmp(getenv("MALLOC_HUMAN_READ"), "1"))
 	{
 		ft_printf("\033[1;31m----------BONUS HUMAN READABLE-----------\033[m\n");
 		ft_printf("💾\t\033[1;34m KB :\033[m \033[1;32m%d KB\033[m\t\n", size / 1024);
@@ -111,4 +109,5 @@ void			show_alloc_mem()
 		ft_printf("📱\t\033[1;34m GB :\033[m \033[1;32m%d GB\033[m\n", size / 1024 / 1024 / 1024);
 		ft_printf("\033[1;31m----------------------------------------\033[m\n");
 	}
+	pthread_mutex_unlock(&g_mutex.mutex_show);
 }

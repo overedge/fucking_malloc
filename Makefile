@@ -1,4 +1,4 @@
-SRC_NAME = malloc.c tools.c show_alloc_mem.c verify_heap.c extend_heap.c free.c
+SRC_NAME = malloc.c tools.c show_alloc_mem.c verify_heap.c extend_heap.c free.c realloc.c
 
 ifeq ($(HOSTTYPE),)
 	HOSTTYPE := $(shell uname -m)_$(shell uname -s)

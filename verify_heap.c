@@ -6,7 +6,7 @@
 /*   By: nahmed-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/20 10:14:11 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/03/01 01:43:08 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/03/02 01:23:34 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_heap	*verify_heap_big(size_t size, t_heap *tmp)
 		if ((tmp->free & FLAG_FREE) != 0 && size <= tmp->size)
 		{
 				tmp->free = (tmp->free & ~FLAG_FREE);
-
+				
 				// PEUT ETRE RAJOUTER UN FREE SUR le RESTE
 				return (tmp);
 		}
