@@ -6,7 +6,7 @@
 /*   By: nahmed-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 11:52:32 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/03/02 03:02:34 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/03/06 10:19:34 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ static size_t	show_small_heap(void)
 		{
 			ft_printf("\t0x%X - 0x%X : %d octets", tmp->data, tmp->data + tmp->size, tmp->size);
 			if ((tmp->free & FLAG_PAGE) != 0)
-				ft_printf("   HEAD OF PAGE");
+				if (getenv("MALLOC_SHOW_MMAP") && !ft_strcmp(getenv("MALLOC_SHOW_MMAP"), "1") && (tmp->free & FLAG_PAGE) != 0)
+					ft_printf("   HEAD OF PAGE");
 			if ((tmp->free & FLAG_FREE) != 0)
 				ft_printf("   FREE");
 			ft_printf("\n");
@@ -79,7 +80,8 @@ static size_t	show_big_heap(void)
 		{
 			ft_printf("\t0x%X - 0x%X : %d octets", tmp->data, tmp->data + tmp->size, tmp->size);
 			if ((tmp->free & FLAG_PAGE) != 0)
-				ft_printf("   HEAD OF PAGE %d ", tmp->size);
+				if (getenv("MALLOC_SHOW_MMAP") && !ft_strcmp(getenv("MALLOC_SHOW_MMAP"), "1") && (tmp->free & FLAG_PAGE) != 0)
+					ft_printf("   HEAD OF PAGE");
 			if ((tmp->free & FLAG_FREE) != 0)
 				ft_printf("   FREE");
 			ft_printf("\n");
@@ -95,7 +97,11 @@ void			show_alloc_mem()
 {
 	size_t		size;
 
-	pthread_mutex_lock(&g_mutex.mutex_show);
+	if (pthread_mutex_lock(&g_mutex.mutex_show) == EINVAL)
+	{
+		pthread_mutex_init(&g_mutex.mutex_show, NULL);
+		pthread_mutex_lock(&g_mutex.mutex_show);
+	}
 	size = 0;
 	size += show_tiny_heap();
 	size += show_small_heap();

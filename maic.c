@@ -6,7 +6,7 @@
 /*   By: nahmed-m <nahmed-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 01:52:01 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/03/02 22:04:36 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/03/06 09:33:35 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,14 @@ pthread_mutex_t lock;
 void	test(int mutex)
 {
 	printf("THREAD  : %d\n", mutex);
-	int ret = pthread_mutex_lock(&lock);
-	if (ret == EINVAL)
+	if (pthread_mutex_lock(&lock) == EINVAL)
 	{
-		//pthread_mutex_init (&lock, NULL);
+		pthread_mutex_init (&lock, NULL);
 		pthread_mutex_lock(&lock);
 	}
 
 	printf("HELLO JE SUIS LE THREAD  : %d JATTEND\n", mutex);
-	sleep(5);
+	sleep(1);
 	pthread_mutex_unlock(&lock);
 }
 

@@ -6,7 +6,7 @@
 /*   By: nahmed-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 16:46:01 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/03/02 21:52:00 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/03/06 11:14:07 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@ void			*malloc(size_t size)
 	t_heap		*tmp;
 	int			size_category;
 
-	pthread_mutex_lock(&g_mutex.mutex_malloc);
+	ft_printf("MALLOC\n");
+	if (pthread_mutex_lock(&g_mutex.mutex_malloc) == EINVAL)
+	{
+		pthread_mutex_init(&g_mutex.mutex_malloc, NULL);
+		pthread_mutex_lock(&g_mutex.mutex_malloc);
+	}
 	if (size == 0)
 	{
 		pthread_mutex_unlock(&g_mutex.mutex_malloc);
@@ -32,7 +37,7 @@ void			*malloc(size_t size)
 				return (NULL);
 		}
 	}
-//	show_alloc_mem();
+	show_actions();
 	pthread_mutex_unlock(&g_mutex.mutex_malloc);
 	return (tmp->data);
 }

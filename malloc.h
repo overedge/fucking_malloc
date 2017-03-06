@@ -6,7 +6,7 @@
 /*   By: nahmed-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 16:59:56 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/03/02 03:25:55 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/03/06 10:26:37 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,11 @@ typedef struct		s_thread {
 # define SMALL 2
 # define TINY 1
 
-# define TINY_SIZE 128
-# define SMALL_SIZE 1100
-
 # define BLOCK_SIZE sizeof(t_heap)
+
+# define TINY_SIZE 128 - BLOCK_SIZE
+# define SMALL_SIZE 1024 - BLOCK_SIZE
+
 
 # define FLAG_FREE 1
 # define FLAG_PAGE 2
@@ -78,5 +79,8 @@ t_heap				*get_list_category(int size_category);
 t_heap				*get_last_of_list(t_heap *begin);
 t_heap				*verify_heap(size_t size, int size_category);
 t_heap				*extend_heap(size_t size, int size_category);
-
+/*
+** Bonus
+*/
+void				show_actions(void);
 #endif
