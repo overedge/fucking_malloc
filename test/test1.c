@@ -1,15 +1,4 @@
 
-void	ft_remplis(int i, char *addr)
-{
-	int		y = 0;
-		while (y < i)
-		{
-			addr[y] = 42;
-			y++;
-		}
-		addr[y] = '\0';
-}
-
 int main()
 {
 	int		i;
@@ -21,6 +10,5 @@ int main()
 	addr[0] = 42;
 	i++;
 	}
-//	show_alloc_mem();
 	return(0);
 }

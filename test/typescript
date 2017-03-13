@@ -1,0 +1,98 @@
+Script started on Sun Mar 12 21:34:17 2017
+[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;macbookair@Air-de-macbook: ~/fucking_malloc/test]1;..g_malloc/test[0m[27m[24m[J[01;32m➜  [36mtest[00m [01;34mgit:([31mmaster[34m) [33m✗[00m [K[?1h=script [?1l>
+]2;script]1;scriptScript started, output file is typescript
+[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;macbookair@Air-de-macbook: ~/fucking_malloc/test]1;..g_malloc/test[0m[27m[24m[J[01;32m➜  [36mtest[00m [01;34mgit:([31mmaster[34m) [33m✗[00m [K[?1h=lls[?1l>
+]2;ls -G]1;ls[31ma.out[39;49m[0m       test0.c     test1.c     test2.c     test3.c     test3_bis.c test4.c     typescript
+[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;macbookair@Air-de-macbook: ~/fucking_malloc/test]1;..g_malloc/test[0m[27m[24m[J[01;32m➜  [36mtest[00m [01;34mgit:([31mmaster[34m) [33m✗[00m [K[?1h=ls[?1l>
+]2;ls -G]1;ls[31ma.out[39;49m[0m       test0.c     test1.c     test2.c     test3.c     test3_bis.c test4.c     typescript
+[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;macbookair@Air-de-macbook: ~/fucking_malloc/test]1;..g_malloc/test[0m[27m[24m[J[01;32m➜  [36mtest[00m [01;34mgit:([31mmaster[34m) [33m✗[00m [K[?1h=[?1l>
+[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;macbookair@Air-de-macbook: ~/fucking_malloc/test]1;..g_malloc/test[0m[27m[24m[J[01;32m➜  [36mtest[00m [01;34mgit:([31mmaster[34m) [33m✗[00m [K[?1h=mmsm man script[?1l>
+]2;man script]1;man[?1049h[?1h=mdoc warning: .Fx: Unknown FreeBSD version `9.2' (#190)
+[m
+SCRIPT(1)                 BSD General Commands Manual                SCRIPT(1)[m
+[m
+[1mNAME[0m[m
+     [1mscript[0m -- make typescript of terminal session[m
+[m
+[1mSYNOPSIS[0m[m
+     [1mscript[0m [[1m-adkpqr[0m] [[1m-F[0m [4mpipe[24m] [[1m-t[0m [4mtime[24m] [[4mfile[24m [[4mcommand[24m [4m...[24m]][m
+[m
+[1mDESCRIPTION[0m[m
+     The [1mscript[0m utility makes a typescript of everything printed on your terminal.  It is useful for students who need a hardcopy record of an interactive session as proof of an[m
+     assignment, as the typescript file can be printed out later with lpr(1).[m
+[m
+     If the argument [4mfile[24m is given, [1mscript[0m saves all dialogue in [4mfile[24m.  If no file name is given, the typescript is saved in the file [4mtypescript[24m.[m
+[m
+     If the argument [4mcommand[24m is given, [1mscript[0m will run the specified command with an optional argument vector instead of an interactive shell.[m
+[m
+     The following options are available:[m
+[m
+     [1m-a[0m      Append the output to [4mfile[24m or [4mtypescript[24m, retaining the prior contents.[m
+[m
+     [1m-d[0m      When playing back a session with the [1m-p[0m flag, do not sleep between records when playing back a timestamped session.[m
+[m
+     [1m-F[0m [4mpipe[24m[m
+             Immediately flush output after each write.  This will allow a user to create a named pipe using mkfifo(1) and another user may watch the live session using a utility like[m
+             cat(1).[m
+[mk, in seconds.  A value of 0 causes [1mscript[0m to flush after every character I/O event.  The[m
+             default interval is 30 seconds.[m
+[m
+     The script ends when the forked shell (or command) exits (a [4mcontrol-D[24m to exit the Bourne shell (sh(1)), and [4mexit[24m, [4mlogout[24m or [4mcontrol-D[24m (if [4mignoreeof[24m is not set) for the C-shell,[m
+     csh(1)).[m
+[m
+     Certain interactive commands, such as vi(1), create garbage in the typescript file.  The [1mscript[0m utility works best with commands that do not manipulate the screen.  The results[m
+     are meant to emulate a hardcopy terminal, not an addressable one.[m
+[m
+[1mENVIRONMENT[0m[m
+     The following environment variables are utilized by [1mscript[0m:[m
+[m
+     SCRIPT[m
+            The SCRIPT environment variable is added to the sub-shell.  If SCRIPT already existed in the users environment, its value is overwritten within the sub-shell.  The value[m
+:[K[K [K::[Kqq[K[?1l>[?1049l[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;macbookair@Air-de-macbook: ~/fucking_malloc/test]1;..g_malloc/test[0m[27m[24m[J[01;32m➜  [36mtest[00m [01;34mgit:([31mmaster[34m) [33m✗[00m [K[?1h=lls[?1l>
+]2;ls -G]1;ls[31ma.out[39;49m[0m       test0.c     test1.c     test2.c     test3.c     test3_bis.c test4.c     typescript
+[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;macbookair@Air-de-macbook: ~/fucking_malloc/test]1;..g_malloc/test[0m[27m[24m[J[01;32m➜  [36mtest[00m [01;34mgit:([31mmaster[34m) [33m✗[00m [K[?1h=l[?1l>
+]2;ls -G -lah]1;ltotal 80
+drwxr-xr-x  10 macbookair  staff   340B Mar 12 21:34 [1m[36m.[39;49m[0m
+drwxr-xr-x  28 macbookair  staff   952B Mar 12 21:23 [1m[36m..[39;49m[0m
+-rwxr-xr-x   1 macbookair  staff   4.1K Mar 12 20:44 [31ma.out[39;49m[0m
+-rw-r--r--   1 macbookair  staff    83B Feb 24 16:56 test0.c
+-rw-r--r--   1 macbookair  staff   127B Mar 12 20:43 test1.c
+-rw-r--r--   1 macbookair  staff   148B Mar 12 21:18 test2.c
+-rw-r--r--   1 macbookail[?1l>
+]2;ls -G -lah]1;ltotal 80
+drwxr-xr-x  10 macbookair  staff   340B Mar 12 21:34 [1m[36m.[39;49m[0m
+drwxr-xr-x  28 macbookair  staff   952B Mar 12 21:23 [1m[36m..[39;49m[0m
+-rwxr-xr-x   1 macbookair  staff   4.1K Mar 12 20:44 [31ma.out[39;49m[0m
+-rw-r--r--   1 macbookair  staff    83B Feb 24 16:56 test0.c
+-rw-r--r--   1 macbookair  staff   127B Mar 12 20:43 test1.c
+-rw-r--r--   1 macbookair  staff   148B Mar 12 21:18 test2.c
+-rw-r--r--   1 macbookair  staff   1.1K Mar 12 21:21 test3.c
+-rw-r--r--   1 macbookair  staff   1.2K Mar  1 17:10 test3_bis.c
+-rw-r--r--   1 macbookair  staff   1.1K Mar 12 21:23 test4.c
+-rw-r--r--   1 macbookair  staff   6.4K Mar 12 21:38 typescript
+[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;macbookair@Air-de-macbook: ~/fucking_malloc/test]1;..g_malloc/test[0m[27m[24m[J[01;32m➜  [36mtest[00m [01;34mgit:([31mmaster[34m) [33m✗[00m [K[?1h=ccd ..[?1l>
+]2;cd ..]1;cd[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;macbookair@Air-de-macbook: ~/fucking_malloc]1;..ucking_malloc[0m[27m[24m[J[01;32m➜  [36mfucking_malloc[00m [01;34mgit:([31mmaster[34m) [33m✗[00m [K[?1h=lls[?1l>
+]2;ls -G]1;lsMakefile                      free.c                        [31mlibft_malloc_x86_64_Darwin.so[39;49m[0m realloc.o                     [31mtest.sh[39;49m[0m
+[31ma.out[39;49m[0m                         free.o                        malloc.c                      [31mrun.sh[39;49m[0m                        tools.c
+auteur                        [1m[36mlibft[39;49m[0m                         malloc.h                      show_alloc_mem.c              tools.o
+extend_heap.c                 libft.a                       malloc.o                      show_alloc_mem.o              verify_heap.c
+extend_heap.o                 [35mlibft_malloc.so[39;49m[0m               realloc.c                     [1m[36mtest[39;49m[0m                          verify_heap.o
+[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;macbookair@Air-de-macbook: ~/fucking_malloc]1;..ucking_malloc[0m[27m[24m[J[01;32m➜  [36mfucking_malloc[00m [01;34mgit:([31mmaster[34m) [33m✗[00m [K[?1h=mmak m  mmake fclean[1m [0m[0m [?1l>
+]2;make fclean]1;make[1;34m ----LIBFT----- :[m [1;32m DELETE OBJ FILES ![m
+[1;34m ----PRINTF---- :[m [1;32m DELETE OBJ FILES ![m
+[1;34m --MALLOC-- :[m [1;32m DELETE OBJ FILES ![m
+[1;34m ----LIBFT----- :[m [1;32m DELETE OBJ FILES ![m
+[1;34m ----PRINTF---- :[m [1;32m DELETE OBJ FILES ![m
+[1;34m ----LIBFT----- :[m [1;32m DELETE libft.a ![m
+[1;34m ----PRINTF---- :[m [1;32m DELETE OBJ FILES ![m
+[1;34m --MALLOC-- :[m [1;32m DELETE project ![m
+[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;macbookair@Air-de-macbook: ~/fucking_malloc]1;..ucking_malloc[0m[27m[24m[J[01;32m➜  [36mfucking_malloc[00m [01;34mgit:([31mmaster[34m) [33m✗[00m [K[?1h=ggit status[?1l>
+]2;git status]1;gitOn branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   a.out[m
+	[31mmodified:   extend_heap.c[m
+	[31mmodified:  

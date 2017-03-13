@@ -6,7 +6,7 @@
 /*   By: nahmed-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 11:52:32 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/03/06 10:19:34 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/03/10 01:29:26 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ static size_t	show_small_heap(void)
 {
 	t_heap		*tmp;
 	size_t		size;
+	size_t		size2;
 
+	size2 = 0;
 	size = 0;
 	tmp = g_memory.heap_small;
 	if (tmp)
@@ -54,9 +56,14 @@ static size_t	show_small_heap(void)
 			ft_printf("\t0x%X - 0x%X : %d octets", tmp->data, tmp->data + tmp->size, tmp->size);
 			if ((tmp->free & FLAG_PAGE) != 0)
 				if (getenv("MALLOC_SHOW_MMAP") && !ft_strcmp(getenv("MALLOC_SHOW_MMAP"), "1") && (tmp->free & FLAG_PAGE) != 0)
+				{
 					ft_printf("   HEAD OF PAGE");
+					size2 = 0;
+					}
 			if ((tmp->free & FLAG_FREE) != 0)
 				ft_printf("   FREE");
+			size2 += get_block_size(SMALL);
+			ft_printf("                  %d / %d", size2, get_zone_size(0, SMALL));
 			ft_printf("\n");
 			size += tmp->size;
 			tmp = tmp->next;

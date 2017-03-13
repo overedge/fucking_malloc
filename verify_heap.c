@@ -6,27 +6,11 @@
 /*   By: nahmed-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/20 10:14:11 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/03/06 11:58:43 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/03/10 02:03:36 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
-
-
-static t_heap	*verify_heap_big(size_t size, t_heap *tmp)
-{
-	while (tmp != NULL)
-	{
-		if ((tmp->free & FLAG_FREE) != 0 && size <= tmp->size)
-		{
-				tmp->free = (tmp->free & ~FLAG_FREE);
-				// PEUT ETRE RAJOUTER UN FREE SUR le RESTE
-				return (tmp);
-		}
-		tmp = tmp->next;
-	}
-	return (NULL);
-}
 
 t_heap			*verify_heap(size_t size, int size_category)
 {
@@ -39,7 +23,7 @@ t_heap			*verify_heap(size_t size, int size_category)
 	if (!tmp)
 		return (NULL);
 	if (size_category == BIG)
-		return (verify_heap_big(size, tmp));
+		return (NULL);
 	while (tmp != NULL)
 	{
 		if ((tmp->free & FLAG_PAGE) != 0)

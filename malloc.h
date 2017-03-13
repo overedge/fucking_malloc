@@ -6,7 +6,7 @@
 /*   By: nahmed-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 16:59:56 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/03/06 10:26:37 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/03/12 17:11:53 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ typedef struct		s_thread {
 
 # define BLOCK_SIZE sizeof(t_heap)
 
-# define TINY_SIZE 128 - BLOCK_SIZE
-# define SMALL_SIZE 1024 - BLOCK_SIZE
+# define TINY_SIZE 160
+# define SMALL_SIZE 1056
 
 
 # define FLAG_FREE 1

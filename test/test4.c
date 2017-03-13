@@ -6,7 +6,7 @@
 /*   By: nahmed-m <nahmed-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 17:13:00 by nahmed-m          #+#    #+#             */
-/*   Updated: 2017/03/01 23:28:11 by nahmed-m         ###   ########.fr       */
+/*   Updated: 2017/03/12 21:23:48 by nahmed-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int main()
 char *addr;
 
 addr = malloc(16);
-strcpy(addr, "BONJOURS12345678");
-print(addr);
-//free(NULL);
 
-//free((void *)addr + 5);
+free(NULL);
 
-addr = realloc((void *)addr, 10);
-print(addr);
-show_alloc_mem();
+free((void *)addr + 5);
+
+if (realloc((void *)addr + 5, 10) == NULL)
+
+print("Bonjours\n");
+
 }
